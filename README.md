@@ -2,7 +2,7 @@
 
 > Turn an ambiguous project into a decision-complete route—and keep that route visible while the work changes.
 
-[![Tests: 149 passing](https://img.shields.io/badge/tests-149%20passing-2ea043.svg)](tests)
+[![Tests: 151 passing](https://img.shields.io/badge/tests-151%20passing-2ea043.svg)](tests)
 [![Release](https://img.shields.io/github/v/release/Mohammed-Moniem/wayfinder)](https://github.com/Mohammed-Moniem/wayfinder/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-ff8a3d.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-5d7cff.svg)](https://www.python.org/)
@@ -32,13 +32,16 @@ Most plans become unreliable because important choices stay buried in chat, assu
 flowchart LR
     A[Invoke Wayfinder] --> B[Confirm the outcome]
     B --> C[Classify the project domain]
-    C --> D[Ask one material question]
-    D --> E[Compare realistic options]
-    E --> F[Record decision and evidence]
-    F --> G{Route complete?}
-    G -- No --> D
-    G -- Yes --> H[Freeze implementation baseline]
-    H --> I[Use checkpoints for targeted revalidation]
+    C --> D[Create truthful local state]
+    D --> E[Auto-open interactive dashboard]
+    E --> F[Ask or answer one material question]
+    F --> G[Compare realistic options]
+    G --> H[Persist Decision and Evidence]
+    H --> I{Route complete?}
+    I -- No --> F
+    I -- Yes --> J[Freeze revision-bound baseline]
+    J --> K[Execution agent verifies and reads baseline]
+    K --> L[Use checkpoints for targeted revalidation]
 ```
 
 The route progresses through five phases:
@@ -106,16 +109,19 @@ See the [complete installation guide](docs/INSTALLATION.md) and [portable packag
 
 ## The local dashboard
 
-After Wayfinder has enough truthful state to render, the skill starts its installed loopback dashboard and gives you the temporary URL. The dashboard:
+After the initial analysis has enough truthful state to render, the skill starts its installed loopback dashboard, automatically asks the default browser to open it, and gives you the temporary URL as a fallback. The dashboard:
 
 - binds only to `127.0.0.1` on a fresh port;
 - is read-only by default;
 - enables only narrow, revision-checked intake answers in interactive mode;
+- records each accepted answer in `INTAKE.json` and mirrors material choices into their Decision, Evidence, and `EFFORT.json` index entries;
 - uses capability, origin, CSRF, method, content-type, size, schema, and optimistic-concurrency checks;
 - writes no dashboard application files into your project;
 - loads no remote scripts, fonts, analytics, or APIs.
 
 Human-readable planning state lives under the selected project's `.codex/wayfinder/` directory. Wayfinder never commits or pushes that state; whether a team deliberately versions planning artifacts remains the project owner's choice.
+
+Before producing implementation output, the receiving agent must read the active effort's manifest, intake, current EXIT receipt, and applicable Decision revisions and verify that the baseline has not drifted. Dashboard navigation and filters are not recorded as project decisions.
 
 ## Build from source
 

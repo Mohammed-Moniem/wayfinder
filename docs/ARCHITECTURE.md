@@ -8,9 +8,10 @@ flowchart TD
     I --> S[Canonical project-local artifacts]
     S --> V[Validated state builder]
     V --> C[CLI lifecycle inspectors]
-    V --> D[Loopback dashboard]
+    V --> D[Auto-opened loopback dashboard]
+    D -->|current-question CAS answer| I
     S --> B[Implementation baseline]
-    B --> X[Downstream execution system]
+    B --> X[Revision-verifying execution system]
     X -->|material change or failed gate| R[Targeted revalidation]
     R --> I
 ```
@@ -59,13 +60,13 @@ Planning artifacts are data, not authorization. They cannot grant permission to 
 
 The manifest defines five ordered phases and checkpoints: frame destination, resolve route, prove route, ready for execution, and delivery/revalidation. Routine delivery leaves the completed route dormant. A material change, stale premise, failed/waived gate, or new consequential decision reopens only linked branches.
 
-The completion handoff binds the effort ID, manifest digest, destination revision, intake revision, and applicable decision revisions. Downstream work can detect drift instead of silently following an outdated chat message.
+The completion handoff binds the effort ID, manifest digest, destination revision, intake revision, and applicable decision revisions. Downstream work must resolve the active effort, read the manifest, intake, listed Decision artifacts, and current EXIT receipt, and verify those exact bindings before implementation. It can therefore detect drift instead of silently following an outdated chat message or dashboard view.
 
 ## Dashboard boundary
 
-The dashboard is dependency-free static HTML, CSS, SVG, and JavaScript served by the installed Python runtime on `127.0.0.1` with a fresh port.
+The dashboard is dependency-free static HTML, CSS, SVG, and JavaScript served by the installed Python runtime on `127.0.0.1` with a fresh port. The guided skill launches it in a persistent process with an explicit `--open-browser` flag after initial analysis creates truthful state. The stdlib browser request is fail-soft; the capability URL remains available when no browser can open.
 
-Read-only mode exposes validated derived state. Interactive mode adds only two narrow mutation shapes: answer the exact current text question or select one allowed option. Writes require a capability path, exact loopback host and origin, CSRF token, POST method, JSON content type, bounded body, exact fields, current revision, and atomic validation/readback.
+Read-only mode exposes validated derived state. Interactive mode adds only two narrow mutation shapes: answer the exact current text question or select one allowed option. Successful writes update `INTAKE.json` and, for material choices, the canonical Decision, Evidence, and `EFFORT.json` indexes; refreshed dashboard state and its live implementation baseline are rebuilt from exact readback. Writes require a capability path, exact loopback host and origin, CSRF token, POST method, JSON content type, bounded body, exact fields, current revision, and atomic validation/readback.
 
 The browser uses text-safe DOM APIs and native `fetch`. It performs no remote requests and stores no analytics.
 

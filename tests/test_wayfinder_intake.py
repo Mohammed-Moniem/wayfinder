@@ -1191,14 +1191,18 @@ class WayfinderIntakeTests(unittest.TestCase):
         default = CLI.parser().parse_args(["dashboard"])
         interactive = CLI.parser().parse_args(["dashboard", "--interactive"])
         alias = CLI.parser().parse_args(["dashboard", "--record-decisions"])
+        guided = CLI.parser().parse_args(["dashboard", "--interactive", "--open-browser"])
         self.assertFalse(default.decision_recording)
+        self.assertFalse(default.open_browser)
         self.assertTrue(interactive.decision_recording)
         self.assertTrue(alias.decision_recording)
+        self.assertTrue(guided.open_browser)
 
         with mock.patch.object(CLI, "serve") as serve:
-            result = CLI.main(["dashboard", "--interactive", "--port", "0"])
+            result = CLI.main(["dashboard", "--interactive", "--open-browser", "--port", "0"])
         self.assertEqual(0, result)
         self.assertTrue(serve.call_args.kwargs["decision_recording"])
+        self.assertTrue(serve.call_args.kwargs["open_browser"])
         self.assertEqual(0, serve.call_args.kwargs["port"])
 
 

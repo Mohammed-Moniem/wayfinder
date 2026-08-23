@@ -15,6 +15,7 @@ import sys
 from typing import Any, Callable
 import unicodedata
 from urllib.parse import unquote, urlsplit
+import webbrowser
 
 
 def _load_state_module() -> Any:
@@ -541,6 +542,23 @@ def dashboard_url(server: DashboardServer) -> str:
     return f"http://{LOOPBACK}:{int(server.server_address[1])}/{server.wayfinder_capability}/"
 
 
+def open_dashboard_browser(
+    url: str,
+    *,
+    opener: Callable[[str], bool] = webbrowser.open_new_tab,
+) -> bool:
+    """Ask the local default browser to open the capability URL, fail-soft.
+
+    The caller already created and bound the loopback server. This helper uses
+    only the stdlib browser controller, never a shell command, and deliberately
+    treats browser availability as a convenience rather than a serving gate.
+    """
+    try:
+        return bool(opener(url))
+    except Exception:
+        return False
+
+
 def make_server(
     root: Path,
     effort: str | Path | None = None,
@@ -597,14 +615,23 @@ def serve(
     port: int = 0,
     quiet: bool = False,
     decision_recording: bool = False,
+    open_browser: bool = False,
+    browser_opener: Callable[[str], bool] = webbrowser.open_new_tab,
 ) -> None:
     server = make_server(root, effort, port=port, quiet=quiet, decision_recording=decision_recording)
     relative_effort = server.wayfinder_effort_dir.relative_to(server.wayfinder_project_root).as_posix()
     print(terminal_safe_text(f"Project root: {server.wayfinder_project_root}"), flush=True)
     print(terminal_safe_text(f"Wayfinder effort: {relative_effort}"), flush=True)
-    print(f"Wayfinder dashboard: {dashboard_url(server)}", flush=True)
+    url = dashboard_url(server)
+    print(f"Wayfinder dashboard: {url}", flush=True)
     mode = "Interactive decision recording" if decision_recording else "Read-only"
     print(f"{mode} and bound to this machine. Press Ctrl-C to stop.", flush=True)
+    if open_browser and not open_dashboard_browser(url, opener=browser_opener):
+        print(
+            "Wayfinder: the browser did not open automatically; use the printed local URL.",
+            file=sys.stderr,
+            flush=True,
+        )
     try:
         server.serve_forever(poll_interval=0.25)
     except KeyboardInterrupt:

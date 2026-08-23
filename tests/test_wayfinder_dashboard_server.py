@@ -9,6 +9,7 @@ import sys
 import tempfile
 import threading
 import unittest
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -142,6 +143,42 @@ class WayfinderDashboardServerTests(unittest.TestCase):
             json.loads(body),
         )
 
+    def test_browser_auto_open_is_explicit_testable_and_fail_soft(self) -> None:
+        url = "http://127.0.0.1:43210/test-capability/"
+        opener = mock.Mock(return_value=True)
+        self.assertTrue(SERVER.open_dashboard_browser(url, opener=opener))
+        opener.assert_called_once_with(url)
+
+        self.assertFalse(SERVER.open_dashboard_browser(url, opener=mock.Mock(return_value=False)))
+        self.assertFalse(
+            SERVER.open_dashboard_browser(
+                url,
+                opener=mock.Mock(side_effect=RuntimeError("browser unavailable")),
+            )
+        )
+
+    def test_failed_auto_open_keeps_serving_and_prints_a_url_fallback(self) -> None:
+        project = Path("/tmp/wayfinder-browser-test")
+        fake_server = mock.Mock()
+        fake_server.server_address = (SERVER.LOOPBACK, 43210)
+        fake_server.wayfinder_capability = "test-capability"
+        fake_server.wayfinder_project_root = project
+        fake_server.wayfinder_effort_dir = project / ".codex" / "wayfinder" / "efforts" / "demo"
+        opener = mock.Mock()
+        with (
+            mock.patch.object(SERVER, "make_server", return_value=fake_server),
+            mock.patch.object(SERVER, "open_dashboard_browser", return_value=False) as open_browser,
+            mock.patch("builtins.print") as print_output,
+        ):
+            SERVER.serve(project, decision_recording=True, open_browser=True, browser_opener=opener)
+
+        url = "http://127.0.0.1:43210/test-capability/"
+        open_browser.assert_called_once_with(url, opener=opener)
+        fake_server.serve_forever.assert_called_once_with(poll_interval=0.25)
+        fake_server.server_close.assert_called_once_with()
+        self.assertTrue(any(url in str(call) for call in print_output.call_args_list))
+        self.assertTrue(any("did not open automatically" in str(call) for call in print_output.call_args_list))
+
     def test_valid_choice_uses_fixed_identity_and_persists_in_refreshed_state(self) -> None:
         self.start_server()
         body = json.dumps({"decision_id": "D-001", "choice": "opt-a", "expected_revision": 7}).encode()
@@ -241,6 +278,25 @@ class WayfinderDashboardServerTests(unittest.TestCase):
             self.assertEqual("E-001", recorded["intake"]["decision_bindings"][0]["evidence_id"])
             self.assertEqual("RESOLVED", next(node for node in recorded["nodes"] if node["id"] == "D-001")["status"])
             self.assertEqual("E-001", next(item for item in recorded["evidence"] if item["id"] == "E-001")["id"])
+
+            effort = project / ".codex" / "wayfinder" / "efforts" / "demo"
+            persisted_intake = json.loads((effort / "INTAKE.json").read_text(encoding="utf-8"))
+            persisted_manifest = json.loads((effort / "EFFORT.json").read_text(encoding="utf-8"))
+            persisted_decision = (effort / "decisions" / "D-001.md").read_text(encoding="utf-8")
+            persisted_evidence = (effort / "evidence" / "E-001.md").read_text(encoding="utf-8")
+            self.assertEqual(2, persisted_intake["revision"])
+            self.assertEqual("DASHBOARD", persisted_intake["receipts"][-1]["source"])
+            self.assertEqual("SOFTWARE", persisted_intake["domain"]["selected"])
+            self.assertEqual("RESOLVED", persisted_manifest["decisions"][0]["status"])
+            self.assertEqual("E-001", persisted_manifest["evidence"][0]["id"])
+            self.assertIn("- **Revision:** 1", persisted_decision)
+            self.assertIn("explicitly selected Software", persisted_decision)
+            self.assertIn("explicitly selected Software", persisted_evidence)
+            self.assertEqual(2, recorded["implementation_baseline"]["intake_revision"])
+            self.assertEqual(
+                [{"id": "D-001", "revision": 1, "status": "RESOLVED"}],
+                recorded["implementation_baseline"]["applicable_decisions"],
+            )
 
             refresh_status, _, refresh_body = self.request("GET", f"{self.base}/api/state")
             self.assertEqual(200, refresh_status)

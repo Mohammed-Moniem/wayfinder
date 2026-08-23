@@ -61,8 +61,10 @@ python3 /path/to/installed/wayfinder/scripts/wayfinder.py dashboard --root .
 Use interactive mode only when the user is intentionally continuing intake:
 
 ```bash
-python3 /path/to/installed/wayfinder/scripts/wayfinder.py dashboard --root . --interactive
+python3 /path/to/installed/wayfinder/scripts/wayfinder.py dashboard --root . --interactive --open-browser
 ```
+
+In the normal guided flow, run that command in a persistent process immediately after the initial analysis has created or resumed truthful state. `--open-browser` asks the Python standard library to open the exact fresh capability URL; it does not invoke a shell. Browser-opening failure is non-fatal: keep the loopback server running and give the user the printed URL.
 
 The server chooses a fresh OS-assigned port by default. Fixed ports are explicit opt-in because predictable browser-origin reuse weakens isolation. Open only the exact capability URL printed by the current process.
 
@@ -75,6 +77,8 @@ Before a guided workflow presents the URL, verify all of these:
 - session metadata reports interactive mode and a recordable current question.
 
 Do not guess an installed-skill path or add a project dependency. The server reports the selected project root and active effort before serving. Stop if ACTIVE, a manifest path, an indexed artifact, or intake recovery state is unsafe or inconsistent. A project directory need not be a Git repository when it was explicitly selected and all Wayfinder containment checks pass.
+
+After each successful dashboard write, reload canonical state before doing more analysis. The response is not the source of truth: `INTAKE.json`, the affected Decision and Evidence artifacts, and the `EFFORT.json` indexes must all agree on exact readback. The live implementation-baseline view is then rebuilt from those files. Navigation, filters, and visual layout preferences are UI-only and are intentionally not planning decisions.
 
 ## Routes and interaction
 

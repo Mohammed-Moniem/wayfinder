@@ -157,6 +157,11 @@ def parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Enable only validated local intake answers and option selections; grants no general write or implementation authority.",
     )
+    dashboard.add_argument(
+        "--open-browser",
+        action="store_true",
+        help="Open the fresh local capability URL in the default browser after the server binds; failure leaves the printed URL available.",
+    )
 
     intake = commands.add_parser("intake", help="Run or inspect the deterministic one-question-at-a-time project intake.")
     intake_commands = intake.add_subparsers(dest="intake_command", required=True)
@@ -455,6 +460,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 port=args.port,
                 quiet=args.quiet,
                 decision_recording=args.decision_recording,
+                open_browser=args.open_browser,
             )
             return 0
 
