@@ -2,7 +2,7 @@
 
 > Turn an ambiguous project into a decision-complete route—and keep that route visible while the work changes.
 
-[![Validate](https://github.com/Mohammed-Moniem/wayfinder/actions/workflows/validate.yml/badge.svg)](https://github.com/Mohammed-Moniem/wayfinder/actions/workflows/validate.yml)
+[![Tests: 149 passing](https://img.shields.io/badge/tests-149%20passing-2ea043.svg)](tests)
 [![Release](https://img.shields.io/github/v/release/Mohammed-Moniem/wayfinder)](https://github.com/Mohammed-Moniem/wayfinder/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-ff8a3d.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-5d7cff.svg)](https://www.python.org/)
