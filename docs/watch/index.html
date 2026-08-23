@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3a0b0d" />
+    <title>Wayfinder — 90-second explainer</title>
+    <meta
+      name="description"
+      content="See how Wayfinder turns an ambiguous idea into a durable project map for ChatGPT desktop, Codex, and Claude Code."
+    />
+
+    <link rel="canonical" href="https://mohammed-moniem.github.io/wayfinder/watch/" />
+    <meta property="og:type" content="video.other" />
+    <meta property="og:site_name" content="Wayfinder" />
+    <meta property="og:title" content="Wayfinder — a project plan that survives the build" />
+    <meta
+      property="og:description"
+      content="Watch the 90-second beginner-friendly explainer for the open-source Wayfinder planning skill."
+    />
+    <meta property="og:url" content="https://mohammed-moniem.github.io/wayfinder/watch/" />
+    <meta property="og:image" content="https://mohammed-moniem.github.io/wayfinder/watch/poster.png" />
+    <meta property="og:image:width" content="720" />
+    <meta property="og:image:height" content="900" />
+    <meta property="og:image:alt" content="Wayfinder project route crossing from fog into a clear destination" />
+    <meta
+      property="og:video"
+      content="https://d2ol7oe51mr4n9.cloudfront.net/user_3GP8J5biP93weG2ykOCjv07fVY5/6ad40114-a4ad-4bd0-9774-53512191e530.mp4"
+    />
+    <meta
+      property="og:video:secure_url"
+      content="https://d2ol7oe51mr4n9.cloudfront.net/user_3GP8J5biP93weG2ykOCjv07fVY5/6ad40114-a4ad-4bd0-9774-53512191e530.mp4"
+    />
+    <meta property="og:video:type" content="video/mp4" />
+    <meta property="og:video:width" content="720" />
+    <meta property="og:video:height" content="1280" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wayfinder — 90-second explainer" />
+    <meta
+      name="twitter:description"
+      content="A beginner-friendly look at durable project mapping for AI agents."
+    />
+    <meta name="twitter:image" content="https://mohammed-moniem.github.io/wayfinder/watch/poster.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Wayfinder — 90-second explainer",
+        "description": "A beginner-friendly explanation of the open-source Wayfinder planning skill.",
+        "thumbnailUrl": "https://mohammed-moniem.github.io/wayfinder/watch/poster.png",
+        "uploadDate": "2026-08-23",
+        "duration": "PT1M30S",
+        "contentUrl": "https://d2ol7oe51mr4n9.cloudfront.net/user_3GP8J5biP93weG2ykOCjv07fVY5/6ad40114-a4ad-4bd0-9774-53512191e530.mp4",
+        "embedUrl": "https://mohammed-moniem.github.io/wayfinder/watch/"
+      }
+    </script>
+
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #eee5d8;
+        --paper-deep: #dfd2c1;
+        --ink: #171616;
+        --muted: #635d56;
+        --wine: #3a0b0d;
+        --wine-soft: #5a1518;
+        --orange: #ff6a1a;
+        --line: rgba(58, 11, 13, 0.17);
+        --shadow: 0 30px 70px rgba(43, 20, 15, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--paper);
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.82), transparent 31rem),
+          linear-gradient(135deg, var(--paper) 0%, #f6efe6 52%, var(--paper-deep) 100%);
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0 30px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 0 2px 20px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        text-decoration: none;
+        font-size: 0.86rem;
+        font-weight: 850;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .runtime {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      main {
+        display: grid;
+        gap: 26px;
+        padding: 28px 0 24px;
+      }
+
+      .copy {
+        align-self: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 14px;
+        color: var(--wine-soft);
+        font-size: 0.76rem;
+        font-weight: 850;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 28px;
+        height: 4px;
+        border-radius: 999px;
+        background: var(--orange);
+        content: "";
+      }
+
+      h1 {
+        max-width: 13ch;
+        margin: 0;
+        color: var(--wine);
+        font-size: clamp(2.6rem, 11vw, 5.4rem);
+        font-weight: 900;
+        letter-spacing: -0.055em;
+        line-height: 0.94;
+      }
+
+      .lede {
+        max-width: 620px;
+        margin: 22px 0 0;
+        color: #403a35;
+        font-size: clamp(1.02rem, 3.8vw, 1.27rem);
+        line-height: 1.58;
+      }
+
+      .signals {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .signals li {
+        padding: 9px 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.42);
+        font-size: 0.82rem;
+        font-weight: 750;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border: 1px solid var(--wine);
+        border-radius: 999px;
+        font-size: 0.91rem;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      }
+
+      .button.primary {
+        color: #fffaf3;
+        background: var(--wine);
+        box-shadow: 0 12px 30px rgba(58, 11, 13, 0.18);
+      }
+
+      .button.secondary {
+        background: rgba(255, 255, 255, 0.38);
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button:focus-visible,
+      video:focus-visible {
+        outline: 4px solid rgba(255, 106, 26, 0.48);
+        outline-offset: 4px;
+      }
+
+      .player-card {
+        position: relative;
+        width: min(100%, 510px);
+        justify-self: center;
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 34px;
+        background: linear-gradient(160deg, #221d1c 0%, #090909 70%);
+        box-shadow: var(--shadow);
+      }
+
+      .player-card::before {
+        position: absolute;
+        inset: -11px 20% auto;
+        height: 5px;
+        border-radius: 999px;
+        background: var(--orange);
+        content: "";
+      }
+
+      .player-shell {
+        overflow: hidden;
+        aspect-ratio: 9 / 16;
+        border-radius: 24px;
+        background: #000;
+      }
+
+      video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        object-fit: contain;
+      }
+
+      .player-note {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin: 0;
+        padding: 13px 8px 2px;
+        color: #d7d0c8;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .sound {
+        color: #ffb187;
+      }
+
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.78rem;
+        line-height: 1.5;
+      }
+
+      @media (min-width: 860px) {
+        .page {
+          padding-top: 32px;
+        }
+
+        main {
+          grid-template-columns: minmax(0, 1.1fr) minmax(330px, 0.72fr);
+          gap: clamp(42px, 7vw, 92px);
+          padding: 52px 0 44px;
+        }
+
+        .player-card {
+          justify-self: end;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .button {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="brand" href="https://github.com/Mohammed-Moniem/wayfinder">Wayfinder</a>
+        <span class="runtime">90-second explainer</span>
+      </header>
+
+      <main>
+        <section class="copy" aria-labelledby="page-title">
+          <p class="eyebrow">Open-source project navigation</p>
+          <h1 id="page-title">A project plan should survive the build.</h1>
+          <p class="lede">
+            Wayfinder turns an ambiguous idea into a durable project map. It asks one meaningful question at a
+            time, compares realistic routes in plain language, and keeps decisions visible as the work changes.
+          </p>
+
+          <ul class="signals" aria-label="Wayfinder highlights">
+            <li>Technical and non-technical projects</li>
+            <li>Private local dashboard</li>
+            <li>Decisions that persist</li>
+          </ul>
+
+          <div class="actions">
+            <a class="button primary" href="https://github.com/Mohammed-Moniem/wayfinder">Explore the repository</a>
+            <a
+              class="button secondary"
+              href="https://d2ol7oe51mr4n9.cloudfront.net/user_3GP8J5biP93weG2ykOCjv07fVY5/6ad40114-a4ad-4bd0-9774-53512191e530.mp4"
+            >Open video directly</a>
+          </div>
+        </section>
+
+        <section class="player-card" aria-label="Wayfinder explainer video">
+          <div class="player-shell">
+            <video controls playsinline preload="metadata" poster="poster.png">
+              <source
+                src="https://d2ol7oe51mr4n9.cloudfront.net/user_3GP8J5biP93weG2ykOCjv07fVY5/6ad40114-a4ad-4bd0-9774-53512191e530.mp4"
+                type="video/mp4"
+              />
+              Your browser cannot play this video.
+              <a
+                href="https://d2ol7oe51mr4n9.cloudfront.net/user_3GP8J5biP93weG2ykOCjv07fVY5/6ad40114-a4ad-4bd0-9774-53512191e530.mp4"
+              >Open the MP4 directly.</a>
+            </video>
+          </div>
+          <p class="player-note"><span>Captions included</span><span class="sound">Press play · sound on</span></p>
+        </section>
+      </main>
+
+      <footer>
+        <span>Built for ChatGPT desktop, Codex, and Claude Code.</span>
+        <span>MIT licensed · Local-first by design</span>
+      </footer>
+    </div>
+  </body>
+</html>
