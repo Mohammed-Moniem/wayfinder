@@ -1,0 +1,139 @@
+{
+  "schema_version": 3,
+  "effort": {
+    "id": "{{SLUG}}",
+    "title": "{{TITLE}}",
+    "destination": "{{DESTINATION}}",
+    "destination_revision": 1,
+    "state": "ACTIVE",
+    "created_at": "{{CREATED_AT}}",
+    "updated_at": "{{CREATED_AT}}"
+  },
+  "current_phase_id": "p1-frame",
+  "phases": [
+    {
+      "id": "p1-frame",
+      "label": "Frame destination",
+      "state": "active",
+      "description": "Define the observable destination, success conditions, constraints, scope, and authority boundaries."
+    },
+    {
+      "id": "p2-resolve",
+      "label": "Resolve route",
+      "state": "upcoming",
+      "description": "Turn fog into precise decisions and settle destination-blocking route choices."
+    },
+    {
+      "id": "p3-prove",
+      "label": "Prove route",
+      "state": "upcoming",
+      "description": "Validate material assumptions, establish feasibility, and define delivery gates."
+    },
+    {
+      "id": "p4-ready",
+      "label": "Ready for execution",
+      "state": "upcoming",
+      "description": "Perform the final consistency and exit review and create the completion handoff."
+    },
+    {
+      "id": "p5-delivery",
+      "label": "Delivery & revalidation",
+      "state": "upcoming",
+      "description": "Evaluate gates during delivery and revalidate only after failure, staleness, or material change."
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1-destination",
+      "phase_id": "p1-frame",
+      "label": "Destination framing review",
+      "status": "DUE",
+      "due_when": "The destination and boundaries are first written or materially revised.",
+      "run_recommended": true,
+      "reason": "Run Wayfinder after the destination and boundaries are first framed or materially revised.",
+      "completed_at": null
+    },
+    {
+      "id": "cp2-route",
+      "phase_id": "p2-resolve",
+      "label": "Decision-route review",
+      "status": "UPCOMING",
+      "due_when": "A destination-blocking route decision is actionable or its prerequisite settles.",
+      "run_recommended": true,
+      "reason": "Resume Wayfinder while destination-blocking route decisions remain unsettled.",
+      "completed_at": null
+    },
+    {
+      "id": "cp3-proof",
+      "phase_id": "p3-prove",
+      "label": "Evidence and feasibility review",
+      "status": "UPCOMING",
+      "due_when": "Material evidence arrives, a high-impact assumption changes, or recorded evidence becomes stale.",
+      "run_recommended": true,
+      "reason": "Run Wayfinder when material evidence arrives, an assumption changes, or route evidence expires.",
+      "completed_at": null
+    },
+    {
+      "id": "cp4-handoff",
+      "phase_id": "p4-ready",
+      "label": "Execution handoff review",
+      "status": "UPCOMING",
+      "due_when": "The route appears decision-complete and is about to enter its domain-appropriate execution plan.",
+      "run_recommended": true,
+      "reason": "Run Wayfinder immediately before the route is handed to execution.",
+      "completed_at": null
+    },
+    {
+      "id": "cp5-revalidate",
+      "phase_id": "p5-delivery",
+      "label": "Delivery revalidation",
+      "status": "DORMANT",
+      "due_when": "A Gate fails or becomes stale, delivery contradicts a route premise, or the destination or route materially changes.",
+      "run_recommended": false,
+      "reason": "Do not rerun during routine delivery; revalidate only after a failed or stale Gate or material change.",
+      "completed_at": null
+    }
+  ],
+  "milestones": [
+    {
+      "id": "M-001",
+      "phase_id": "p1-frame",
+      "label": "Destination baseline",
+      "status": "PENDING",
+      "criteria": ["Observable success conditions, constraints, scope, and authority boundaries are explicit."]
+    },
+    {
+      "id": "M-002",
+      "phase_id": "p2-resolve",
+      "label": "Decision-complete route",
+      "status": "PENDING",
+      "criteria": ["Destination-blocking route Decisions are formulated and resolved."]
+    },
+    {
+      "id": "M-003",
+      "phase_id": "p3-prove",
+      "label": "Evidence-sufficient route",
+      "status": "PENDING",
+      "criteria": ["Material assumptions and feasibility claims have fresh evidence, and delivery Gates are defined."]
+    },
+    {
+      "id": "M-004",
+      "phase_id": "p4-ready",
+      "label": "Completion handoff",
+      "status": "PENDING",
+      "criteria": ["The exit contract passes and EXIT.md records the accepted route."]
+    },
+    {
+      "id": "M-005",
+      "phase_id": "p5-delivery",
+      "label": "Delivery milestone",
+      "status": "PENDING",
+      "criteria": ["Delivery evaluates defined Gates; failures and staleness target linked Decisions for revalidation."]
+    }
+  ],
+  "decisions": [],
+  "gates": [],
+  "evidence": [],
+  "edges": [],
+  "activity": []
+}

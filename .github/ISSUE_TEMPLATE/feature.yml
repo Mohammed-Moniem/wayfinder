@@ -1,0 +1,26 @@
+name: Improvement proposal
+description: Propose a Wayfinder workflow, dashboard, domain, or portability enhancement
+title: "[Proposal]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: User outcome
+      description: What planning task should become clearer or safer?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Synthetic example
+      description: Show a realistic request and the desired observable behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary
+    attributes:
+      label: Human decision and authority boundary
+      description: Which choices must remain with the user, and what should Wayfinder never infer?
+    validations:
+      required: true

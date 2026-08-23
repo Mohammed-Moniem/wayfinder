@@ -1,0 +1,32 @@
+{
+  "name": "wayfinder",
+  "version": "0.2.0",
+  "description": "Local-first decision mapping and visual planning for ambiguous, multi-phase projects.",
+  "author": {
+    "name": "Mohammed Osman",
+    "url": "https://github.com/Mohammed-Moniem"
+  },
+  "homepage": "https://github.com/Mohammed-Moniem/wayfinder#readme",
+  "repository": "https://github.com/Mohammed-Moniem/wayfinder",
+  "license": "MIT",
+  "keywords": [
+    "chatgpt",
+    "claude-code",
+    "codex",
+    "decision-making",
+    "local-first",
+    "project-planning",
+    "wayfinder"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Wayfinder",
+    "shortDescription": "Turn complex goals into clear, recorded routes.",
+    "longDescription": "A decision-first planning workflow with conversational intake, evidence, lifecycle checkpoints, and a private local dashboard.",
+    "developerName": "Mohammed Osman",
+    "category": "Developer Tools",
+    "capabilities": ["Planning", "Research", "Code"],
+    "websiteURL": "https://github.com/Mohammed-Moniem/wayfinder",
+    "defaultPrompt": ["Map this uncertain effort with Wayfinder."]
+  }
+}

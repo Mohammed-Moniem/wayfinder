@@ -1,0 +1,54 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+credentials*
+secrets*
+*.credentials.json
+
+# Local agent and Wayfinder runtime state
+.codex/
+.claude/
+.cursor/
+.agents/runtime/
+*.transcript.jsonl
+*.rollout.jsonl
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# JavaScript and package managers
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+
+# Build, test, and scratch output
+/build/
+/dist/
+/coverage/
+.coverage
+htmlcov/
+/tmp/
+/temp/
+/scratch/
+*.log
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~

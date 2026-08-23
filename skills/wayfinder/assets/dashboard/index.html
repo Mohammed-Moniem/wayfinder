@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#182027">
+    <title>Wayfinder</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" id="skip-link" href="#route-main">Skip to current view</a>
+    <div class="app-shell" id="app-shell" data-rail-collapsed="false">
+      <aside class="side-rail" id="side-rail" aria-label="Wayfinder sections" aria-hidden="true" inert>
+        <div class="brand-row">
+          <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="15.5"></circle><path d="M11 25.5 27.8 11l-4.3 18.3-5-6.2-7.5 2.4Z"></path><path d="M25.5 6.5 31 8l-1.2 5.3"></path></svg>
+          <span class="brand-label">Wayfinder</span>
+          <button class="mobile-nav-close" id="close-mobile-nav" type="button" aria-label="Close navigation" title="Close navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>
+        </div>
+        <nav class="rail-navigation" aria-label="Project views">
+          <a class="rail-link" id="rail-overview-link" data-route="overview" href="#/overview" aria-label="Overview" title="Overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"></path></svg><span>Overview</span></a>
+          <a class="rail-link" id="rail-map-link" data-route="map" href="#/map" aria-label="Map" title="Map"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="5" r="2.5"></circle><circle cx="19" cy="5" r="2.5"></circle><circle cx="12" cy="19" r="2.5"></circle><path d="m7.4 6.1 9.2 0M6.5 7l4.3 9.7M17.5 7l-4.3 9.7"></path></svg><span>Map</span></a>
+          <a class="rail-link" id="rail-decisions-link" data-route="decisions" href="#/decisions" aria-label="Decisions" title="Decisions"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="7" r="4"></circle><path d="M3 21c.4-5 3-7.5 7-7.5S16.6 16 17 21M17 8h4m-2-2v4"></path></svg><span>Decisions</span></a>
+          <a class="rail-link" id="rail-evidence-link" data-route="evidence" href="#/evidence" aria-label="Evidence" title="Evidence"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h6l2 2H21v11H3v-13Z"></path><path d="m8 14 2.2 2.2L16 11"></path></svg><span>Evidence</span></a>
+          <a class="rail-link" id="rail-assumptions-link" data-route="assumptions" href="#/assumptions" aria-label="Assumptions" title="Assumptions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a7 7 0 0 0-4 12.7V19h8v-3.3A7 7 0 0 0 12 3Z"></path><path d="M9 22h6M9 12h6"></path></svg><span>Assumptions</span></a>
+          <a class="rail-link" id="rail-invariants-link" data-route="invariants" href="#/invariants" aria-label="Invariants" title="Invariants"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v6c0 5.2-3.3 8.5-8 10-4.7-1.5-8-4.8-8-10V6l8-3Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></svg><span>Invariants</span></a>
+          <a class="rail-link" id="rail-checkpoints-link" data-route="checkpoints" href="#/checkpoints" aria-label="Checkpoints" title="Checkpoints"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h14a2 2 0 0 1 2 2v5M4 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5M7 12l3 3 8-9"></path></svg><span>Checkpoints</span></a>
+        </nav>
+        <div class="rail-footer"><button class="rail-action" type="button" id="collapse-rail" aria-label="Collapse navigation" title="Collapse navigation" aria-expanded="true" aria-controls="app-shell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7M20 5l-7 7 7 7"></path></svg><span>Collapse</span></button></div>
+      </aside>
+
+      <div class="main-column" id="main-column">
+        <header class="project-header">
+          <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Show navigation" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+          <div class="project-identity"><h1 id="project-title" aria-live="polite">Wayfinder</h1><span class="project-state" id="project-state" aria-label="Project status"><span class="status-dot" aria-hidden="true"></span><span id="project-state-label">Loading</span></span></div>
+          <div class="header-utilities">
+            <span class="context-label"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.5"></rect><path d="M8 21h8M12 17v4"></path></svg>Local project</span>
+            <span class="header-divider" aria-hidden="true"></span>
+            <span class="context-label" id="interaction-mode"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="1.5"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg><span id="interaction-mode-label">Read-only</span></span>
+            <button class="icon-button" id="refresh-state" type="button" aria-label="Refresh project state" title="Refresh project state"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"></path><path d="M6.1 8A7 7 0 0 1 18.5 6.5L20 8M4 16l1.5 1.5A7 7 0 0 0 17.9 16"></path></svg></button>
+          </div>
+        </header>
+
+        <nav class="phase-route" aria-label="Wayfinder phases">
+          <ol id="phase-route-list">
+            <li class="phase-step is-loading"><span class="phase-node"></span><span>Frame destination</span></li><li class="phase-step is-loading"><span class="phase-node"></span><span>Resolve route</span></li><li class="phase-step is-loading"><span class="phase-node"></span><span>Prove route</span></li><li class="phase-step is-loading"><span class="phase-node"></span><span>Ready for execution</span></li><li class="phase-step is-loading"><span class="phase-node"></span><span>Delivery &amp; revalidation</span></li>
+          </ol>
+          <div class="checkpoint-summary" id="checkpoint-summary" hidden><span id="checkpoint-label"></span><span id="checkpoint-recommendation"></span></div>
+        </nav>
+
+        <main id="workspace" class="workspace" aria-busy="true">
+          <div class="state-banner" id="state-banner" role="status" aria-live="polite" data-state="loading"><div class="banner-icon" aria-hidden="true"></div><div><strong id="state-banner-title">Loading project state</strong><span id="state-banner-message"></span></div><button id="retry-state" type="button" hidden>Try again</button></div>
+          <div class="route-toolbar" id="route-toolbar" hidden>
+            <div class="segmented-control view-toggle" role="group" aria-label="Route view">
+              <button id="map-view-button" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="5" r="2"></circle><circle cx="19" cy="5" r="2"></circle><circle cx="12" cy="19" r="2"></circle><path d="M7 5h10M6 7l5 10M18 7l-5 10"></path></svg>Map</button>
+              <button id="list-view-button" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"></path></svg>List</button>
+            </div>
+            <label class="search-control" for="decision-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="decision-search" type="search" aria-label="Search decisions" placeholder="Search decisions and gates" autocomplete="off"><kbd aria-hidden="true">/</kbd></label>
+            <div class="segmented-control status-filters" id="status-filters" role="group" aria-label="Filter by status"><button class="is-selected" type="button" data-status-filter="all" aria-pressed="true">All</button><button type="button" data-status-filter="actionable" aria-pressed="false">Actionable</button><button type="button" data-status-filter="waiting" aria-pressed="false">Waiting</button><button type="button" data-status-filter="blocked" aria-pressed="false">Blocked</button><button type="button" data-status-filter="resolved" aria-pressed="false">Resolved</button></div>
+            <label class="kind-control" for="kind-filter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6.5 7.2V19l-3 1v-7.8L4 5Z"></path></svg><span class="visually-hidden">Filter by kind</span><select id="kind-filter" aria-label="Filter by kind"><option value="all">All kinds</option><option value="decision">Decisions</option><option value="gate">Gates</option></select></label>
+          </div>
+
+          <div class="route-main" id="route-main" tabindex="-1">
+            <section class="route-view overview-view" id="view-overview" data-view="overview" aria-labelledby="overview-heading" hidden>
+              <header class="view-header"><div><span class="eyebrow">Route briefing</span><h2 id="overview-heading" tabindex="-1">Overview</h2></div><p id="overview-updated">Waiting for local state.</p></header>
+              <div class="overview-hero">
+                <div><span class="card-kicker">Destination</span><p id="overview-destination">No destination is available yet.</p></div>
+                <div class="recommendation-card" id="overview-recommendation-card" data-level="none"><span class="recommendation-mark" aria-hidden="true"></span><div><span class="card-kicker">Next best move</span><strong id="overview-recommendation">No recommendation yet</strong><p id="overview-recommendation-reason"></p></div><a class="compact-action" id="overview-next-link" href="#/decisions">Review decisions</a></div>
+              </div>
+              <div class="metric-grid" id="overview-metrics" aria-label="Route totals"></div>
+              <div class="overview-grid">
+                <article class="content-card"><header><span class="card-kicker">Current phase</span><a href="#/checkpoints">All checkpoints</a></header><h3 id="overview-phase">Not determined</h3><p id="overview-phase-description">The active phase will appear after state loads.</p><div class="mini-progress" id="overview-phase-progress" aria-label="Phase progress"></div></article>
+                <article class="content-card"><header><span class="card-kicker">Route integrity</span><a href="#/evidence">Inspect evidence</a></header><h3 id="overview-health">Checking local artifacts</h3><p id="overview-health-detail">Wayfinder is validating the canonical map.</p><ul class="compact-list" id="overview-health-list"></ul></article>
+              </div>
+              <div class="briefing-grid">
+                <article class="content-card"><header><span class="card-kicker">Workstreams</span><span id="intake-progress">Intake not started</span></header><h3 id="primary-workstream">Primary workstream not confirmed</h3><div class="workstream-list" id="secondary-workstreams"></div><div class="empty-inline" id="secondary-workstreams-empty">No secondary workstreams are recorded.</div></article>
+                <article class="content-card"><header><span class="card-kicker">Comparison level</span><span id="comparison-level">Strategy</span></header><h3 id="comparison-title">No route comparison recorded</h3><p id="comparison-explanation">Wayfinder distinguishes an architecture or operating strategy from a later comparison of named technologies or vendors.</p><div class="comparison-list" id="comparison-list"></div></article>
+                <article class="content-card"><header><span class="card-kicker">Implementation baseline</span><span id="baseline-effort">No effort ID</span></header><h3 id="baseline-revision">Revision unavailable</h3><p id="baseline-handoff">Execution handoff is not available yet.</p><dl class="baseline-list" id="baseline-list"></dl></article>
+              </div>
+            </section>
+
+            <section class="route-view map-view" id="view-map" data-view="map" aria-labelledby="map-heading" hidden>
+              <header class="view-header compact-view-header"><div><span class="eyebrow">Dependency model</span><h2 id="map-heading" tabindex="-1">Map</h2></div><p>Typed relationships reveal what blocks, informs, gates, and revalidates the route.</p></header>
+              <section class="map-surface" id="map-surface" aria-label="Dependency map">
+                <div class="map-controls" aria-label="Map zoom controls"><button id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button><button id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path></svg></button><button id="fit-map" type="button" aria-label="Fit map" title="Fit map"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"></path></svg><span class="control-tooltip">Fit map</span></button><button id="focus-map" type="button" aria-label="Focus selected decision" title="Focus selected decision"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6.5"></circle><path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path></svg><span class="control-tooltip">Focus selected</span></button></div>
+                <div class="graph-focus-note" aria-live="polite"><span aria-hidden="true"></span><strong id="graph-mode-label">Preparing route view</strong></div>
+                <svg id="dependency-graph" viewBox="0 0 1000 600" role="img" aria-labelledby="graph-title graph-description" tabindex="0"><title id="graph-title">Wayfinder decision dependency map</title><desc id="graph-description">A keyboard-accessible map of project decisions, delivery gates, and typed dependencies. The default view focuses on the next human decision; Fit map reveals the full route.</desc><defs><marker id="edge-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3.5 L0,7 Z" class="arrow-head"></path></marker></defs><g id="graph-viewport"><g id="graph-edges"></g><g id="graph-nodes"></g></g></svg>
+                <div class="graph-message" id="graph-message" hidden><strong id="graph-message-title"></strong><span id="graph-message-copy"></span></div>
+                <div class="graph-legend" id="graph-legend" aria-label="Edge types"><strong>Edge types</strong><span><i class="edge-key edge-key-requires"></i>Requires</span><span><i class="edge-key edge-key-informs"></i>Informs</span><span><i class="edge-key edge-key-revalidates"></i>Revalidates</span><span><i class="edge-key edge-key-gates"></i>Gates</span></div>
+              </section>
+            </section>
+
+            <section class="route-view decisions-view" id="view-decisions" data-view="decisions" aria-labelledby="decisions-heading" hidden>
+              <header class="view-header compact-view-header"><div><span class="eyebrow">Decision ledger</span><h2 id="decisions-heading" tabindex="-1">Decisions</h2></div><div class="view-header-action"><p id="decisions-summary">Loading exact asks, owners, and route consequences.</p><button class="compact-action" id="open-intake" type="button" hidden>Answer current intake</button></div></header>
+              <div class="decision-workspace">
+                <section class="list-surface" id="list-surface" aria-label="Decision list"><div class="table-scroll"><table id="decision-list"><caption class="visually-hidden">Filtered Wayfinder decisions and gates</caption><thead><tr><th scope="col">ID</th><th scope="col">Decision</th><th scope="col">Kind</th><th scope="col">Status</th><th scope="col">Next actor</th><th scope="col">Phase</th></tr></thead><tbody id="decision-list-body"></tbody></table></div><div class="list-message" id="list-message" hidden></div></section>
+                <aside class="inspector" id="inspector" aria-labelledby="inspector-title" aria-hidden="true" data-open="false" inert>
+                  <header class="inspector-header"><h2 id="inspector-title">Needs you now</h2><button class="icon-button" id="close-inspector" type="button" aria-label="Close decision details"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg></button></header>
+                  <div class="inspector-empty" id="inspector-empty"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 40 11v10c0 10.5-6.8 17.5-16 20-9.2-2.5-16-9.5-16-20V11l16-6Z"></path><path d="m17 24 4 4 10-11"></path></svg><strong id="inspector-empty-title">No decision selected</strong><span id="inspector-empty-copy">Choose a row to inspect the exact ask and what it unlocks.</span></div>
+                  <div class="inspector-content" id="inspector-content" hidden>
+                    <div class="selected-heading"><span class="node-id" id="selected-node-id"></span><div><h3 id="selected-node-title"></h3><span class="status-badge" id="selected-node-status"></span></div></div>
+                    <dl class="inspector-sections"><div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="3"></circle><path d="M3 19c.4-4 2.4-6 6-6 1.4 0 2.6.3 3.5.9M16 8h5M18.5 5.5v5"></path></svg>Exact human decision</dt><dd id="selected-node-question"></dd></div><div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"></path></svg>Recommendation</dt><dd id="selected-node-recommendation"></dd></div><div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Consequence of waiting</dt><dd id="selected-node-consequence"></dd></div><div><dt><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="1.5"></rect><path d="M8 10V7a4 4 0 0 1 7.5-2"></path></svg>What it unlocks</dt><dd id="selected-node-unlocks"></dd></div></dl>
+                    <div class="inspector-provenance" id="inspector-provenance" hidden></div>
+                    <section class="recording-panel" id="recording-panel" aria-labelledby="recording-heading"><div class="recording-heading-row"><div><span class="card-kicker">Local intake</span><h3 id="recording-heading">Record the current answer</h3></div><span class="mode-badge" id="recording-mode-badge">Read-only</span></div><p class="recording-note" id="recording-mode-note">Restart the dashboard with interactive mode to record a bounded intake answer.</p><form id="decision-recording-form" hidden><p class="recording-prompt" id="recording-question"></p><p class="recording-why" id="recording-why" hidden></p><fieldset id="recording-options-group" hidden><legend>Select one existing option</legend><div class="recording-options" id="recording-options"></div></fieldset><label class="answer-control" id="recording-answer-control" for="recording-answer" hidden><span>Your answer</span><textarea id="recording-answer" rows="4" maxlength="4000" spellcheck="true"></textarea><small id="recording-answer-hint"></small></label><p class="recording-identity">Recorded locally as <strong>User</strong> via Dashboard.</p><input id="recording-revision" type="hidden"><div class="recording-feedback" id="recording-feedback" role="status" aria-live="polite"></div><button class="primary-action" id="record-answer" type="submit">Record answer</button></form></section>
+                    <button class="secondary-action" id="open-decision" type="button">Copy reference</button>
+                  </div>
+                </aside>
+              </div>
+            </section>
+
+            <section class="route-view evidence-view" id="view-evidence" data-view="evidence" aria-labelledby="evidence-heading" hidden>
+              <header class="view-header"><div><span class="eyebrow">Proof ledger</span><h2 id="evidence-heading" tabindex="-1">Evidence</h2></div><p>Receipts and references supporting resolved decisions, gates, and route validity.</p></header>
+              <div class="section-grid"><article class="content-card span-two"><header><span class="card-kicker">Referenced evidence</span><span id="evidence-count">0 records</span></header><div class="record-grid" id="evidence-list"></div><div class="empty-state" id="evidence-empty" hidden><strong>No evidence references yet</strong><p>Evidence appears here after a decision or gate records a canonical E-NNN receipt.</p></div></article><article class="content-card"><header><span class="card-kicker">Exit proof</span><span id="exit-status">Pending</span></header><h3 id="exit-heading">Route proof is not complete</h3><ul class="compact-list" id="exit-list"></ul></article></div>
+              <section class="activity-strip" id="activity-strip" aria-labelledby="activity-title"><header><h2 id="activity-title">Activity / Invalidations</h2><div class="activity-filters" role="group" aria-label="Filter activity"><button class="is-selected" type="button" data-activity-filter="all" aria-pressed="true">All</button><button type="button" data-activity-filter="updates" aria-pressed="false">Updates</button><button type="button" data-activity-filter="invalidations" aria-pressed="false">Invalidations</button></div><button class="text-action" id="view-all-activity" type="button">View all</button></header><ol id="activity-list"></ol><p class="activity-empty" id="activity-empty" hidden>No recorded activity in this effort yet.</p></section>
+            </section>
+
+            <section class="route-view" id="view-assumptions" data-view="assumptions" aria-labelledby="assumptions-heading" hidden>
+              <header class="view-header"><div><span class="eyebrow">Uncertainty register</span><h2 id="assumptions-heading" tabindex="-1">Assumptions</h2></div><p>Claims that must be validated, accepted as risk, or explicitly kept non-blocking.</p></header><div class="record-grid wide-record-grid" id="assumptions-list"></div><div class="empty-state large-empty" id="assumptions-empty" hidden><span class="empty-glyph" aria-hidden="true">A</span><strong>No assumptions are exposed in this route</strong><p>When Wayfinder records an open or settled assumption, its stable ID and route impact appear here.</p></div>
+            </section>
+
+            <section class="route-view" id="view-invariants" data-view="invariants" aria-labelledby="invariants-heading" hidden>
+              <header class="view-header"><div><span class="eyebrow">Non-negotiable constraints</span><h2 id="invariants-heading" tabindex="-1">Invariants</h2></div><p>Conditions the route must preserve across planning, delivery, and revalidation.</p></header><div class="record-grid wide-record-grid" id="invariants-list"></div><div class="empty-state large-empty" id="invariants-empty" hidden><span class="empty-glyph" aria-hidden="true">I</span><strong>No active invariants are exposed</strong><p>Active invariant IDs and summaries appear here when the canonical state includes them.</p></div>
+            </section>
+
+            <section class="route-view checkpoints-view" id="view-checkpoints" data-view="checkpoints" aria-labelledby="checkpoints-heading" hidden>
+              <header class="view-header"><div><span class="eyebrow">Rerun cadence</span><h2 id="checkpoints-heading" tabindex="-1">Checkpoints</h2></div><p>Use these milestones to know when Wayfinder should run again for this same project.</p></header><article class="checkpoint-callout" id="checkpoint-callout" data-level="none"><span class="recommendation-mark" aria-hidden="true"></span><div><span class="card-kicker">Current recommendation</span><h3 id="checkpoint-callout-label">No rerun is currently recommended</h3><p id="checkpoint-callout-reason"></p></div></article><ol class="checkpoint-cards" id="checkpoint-cards"></ol><article class="content-card milestone-card"><header><span class="card-kicker">Milestones</span><span id="milestone-progress">0 of 5 reached</span></header><div class="milestone-list" id="milestone-list"></div><div class="empty-state" id="milestone-empty" hidden><strong>No milestone state available</strong><p>The five lifecycle milestones will appear when the effort manifest is available.</p></div></article>
+            </section>
+          </div>
+        </main>
+        <footer class="status-footer" id="status-footer" aria-label="Project status totals"><ul id="status-counts"></ul><div class="footer-health" id="footer-health" role="status"><span class="health-mark" aria-hidden="true"></span><span id="footer-health-label"></span></div><span class="total-count" id="total-count"></span></footer>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

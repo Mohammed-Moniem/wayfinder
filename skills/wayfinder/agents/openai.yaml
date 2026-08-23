@@ -1,0 +1,6 @@
+interface:
+  display_name: "Wayfinder"
+  short_description: "Turn a complex goal into a clear, recorded route"
+  default_prompt: "Use $wayfinder to begin or resume the conversational intake, record each material choice, and open the local decision dashboard when the route can render truthfully."
+policy:
+  allow_implicit_invocation: false
